@@ -251,7 +251,7 @@ gulp.task('html', ['apidoc', 'styles', 'js', 'images'], function() {
     .pipe(gulp.dest('../'));
 });
 
-gulp.task('devhtml', ['apidoc', 'devstyles', 'devjs', 'devimages', 'devfonts'], function() {
+gulp.task('devhtml', ['apidoc', 'devstyles', 'devjs', 'devsvg', 'devcss', 'devimages', 'devfonts'], function() {
   var injectFiles = gulp.src(['./dev/styles/*.css',
     './dev/js/*.js', './dev/site/**/*.js'
   ]);
@@ -297,6 +297,16 @@ gulp.task('minjs', function() {
 gulp.task('js', ['minjs'], function() {
   return gulp.src(['bower_components/**/*.min.js'])
     .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('devcss', function() {
+  return gulp.src(['bower_components/**/*.css', 'src/**/*.css'])
+    .pipe(gulp.dest('./dev'));
+});
+
+gulp.task('devsvg', function() {
+  return gulp.src(['./src/**/*.svg'])
+    .pipe(gulp.dest('./dev'));
 });
 
 gulp.task('devjs', function() {
@@ -351,6 +361,10 @@ gulp.task('dev', ['devhtml'], function() {
     notify: false,
     // Customize the BrowserSync console logging prefix
     logPrefix: 'WSK',
+    ui: {
+      port: 8080
+    },
+    port: 3001,
     // Run as an https by uncommenting 'https: true'
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.

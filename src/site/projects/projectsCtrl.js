@@ -11,10 +11,12 @@
     var vm = this;
 
     vm.myProjects = {};
+    vm.formClass = '';
 
     vm.removeProject = removeProject;
     vm.loadAllProjects = loadAllProjects;
     vm.launchModal = launchModal;
+    vm.setFormClass = setFormClass;
 
     //////////
 
@@ -36,14 +38,19 @@
     }
 
     function launchModal(projectI) {
+      vm.formClass = 'side-form-80';
       if (projectI >= 0) {
         var orgId = vm.myProjects[projectI].org_id;
         ProjectsService.setCurrProjectOrgId(orgId);
       }
 
-      $state.go("Projects.Modal", {
+      $state.go("Landing.Projects.EditProject", {
         'projectI': projectI
       });
+    }
+
+    function setFormClass(classname) {
+      vm.formClass = classname;
     }
 
     function init() {
