@@ -7,7 +7,7 @@
     .controller('InvitesCtrl', InvitesCtrl);
 
   /* @ngInject */
-  function InvitesCtrl($state, $stateParams, ProjectsService, ProjectUsersMgmService) {
+  function InvitesCtrl($state, ProjectsService, ProjectUsersMgmService) {
     var vm = this;
     vm.model = {
       invites: []
@@ -19,7 +19,7 @@
     //////////
 
     function launchModal(inviteI, role) {
-      $state.go("Projects.Edit.Invite", {
+      $state.go("Landing.Projects.Manage.EditInvite", {
         'inviteI': inviteI,
         'role': role
       });

@@ -31,7 +31,7 @@
     function close() {
       // $('#projectModal').off('hidden.bs.modal');
       if (vm.projectI >= 0) {
-        $state.go('Landing.Project');
+        $state.go('Landing.Projects.Manage');
       } else {
         $state.go('Landing.Projects');
       }
@@ -40,11 +40,12 @@
     function done() {
       if (vm.projectI < 0) {
         ProjectsService.createProject(vm.modal);
-        $state.go('Landing.Project');        
+        $state.go('Landing.Projects');        
       } else {
         ProjectsService.updateProject(vm.projectI, vm.modal);
         $state.go('Landing.Projects');        
       }
+      close();
     }
 
     function add() {

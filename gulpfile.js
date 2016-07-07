@@ -230,7 +230,7 @@ gulp.task('devstyles', function() {
     .pipe(inject(injectGlobalFiles, injectGlobalOptions))
     .pipe(inject(injectAppFiles, injectAppOptions))
     .pipe(sass())
-    .pipe(csso())
+    // .pipe(csso())
     .pipe(gulp.dest('./dev/styles'));
 });
 

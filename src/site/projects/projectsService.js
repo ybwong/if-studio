@@ -7,7 +7,7 @@
     .factory('ProjectsService', ProjectsService);
 
   /* @ngInject */
-  function ProjectsService($q, $log, IdpClient, IfStudioClient, ProjectUsersMgmService) {
+  function ProjectsService($q, $log, IdpClient, IfStudioClient, ProjectUsersMgmService, AppService) {
 
     var model = {
       currProject: {
@@ -19,6 +19,7 @@
       currProjectOrgId: undefined,
       projects: [],
 
+      appList: [],
       userRoleInvites: [],
       adminRoleInvites: [],
       inviteListByRole: [],
@@ -53,8 +54,14 @@
       getCurrProjectOrgId: getCurrProjectOrgId,
       setCurrProjectOrgId: setCurrProjectOrgId,
 
+      getProjectIndex: getProjectIndex,
+      setProjectIndex: setProjectIndex,
+
       getModel: getModel,
       clearModel: clearModel,
+      getApplications: getApplications,
+      listApplications: listApplications,
+      deleteApplication: deleteApplication,
       getInvites: getInvites,
       listInvites: listInvites,
       deleteInviteRole: deleteInviteRole,
@@ -195,6 +202,14 @@
       model.currProjectOrgId = id;
     }
 
+    function getProjectIndex() {
+      return model.currProjectIndex;
+    }
+
+    function setProjectIndex(projectIndex) {
+      model.currProjectIndex = projectIndex;
+    }
+
     function getModel() {
       return model;
     }
@@ -202,6 +217,29 @@
     function clearModel() {
       model.users = [];
       model.invites = [];
+      model.appList = [];
+    }
+
+    function getApplications() {
+      return model.appList;
+    }
+
+    function listApplications() {
+      return AppService.getAllApps(getCurrProjectOrgId(), function(data) {
+        AppService.setModelAppList(data);
+        model.appList = AppService.getModel().appList;
+      }, function(error) {
+        AppService.setModelAppList([]);
+        model.appList = AppService.getModel().appList;
+      });
+    }
+
+    function deleteApplication(appIndex) {
+      AppService.deleteApp(getCurrProjectOrgId(), model.appList[appIndex].client_id, function(appId) {
+        model.appList.splice(appIndex, 1);
+      }, function() {
+        // Notification failure
+      });
     }
 
     function getInvites() {

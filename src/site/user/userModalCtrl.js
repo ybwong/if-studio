@@ -31,8 +31,9 @@
     //////////
 
     function close() {
-      $('#UserModal').off('hidden.bs.modal');
-      $state.go('Projects.Edit');
+      $state.go("Landing.Projects.Manage", {
+        'projectIndex': ProjectsService.getProjectIndex()
+      });
     }
 
     function updateUserRoles() {
@@ -55,6 +56,7 @@
           ProjectsService.listUsers();
         });
       }
+      close();
     }
 
     function init() {

@@ -31,8 +31,9 @@
     //////////
 
     function close() {
-      $('#myModal').off('hidden.bs.modal');
-      $state.go('Projects.Edit');
+      $state.go("Landing.Projects.Manage", {
+        'projectIndex': ProjectsService.getProjectIndex()
+      });
     }
 
     function done() {
@@ -62,6 +63,7 @@
           // Notification failure          
         });
       }
+      close();
     }
 
     function add() {

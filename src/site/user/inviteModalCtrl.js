@@ -31,8 +31,9 @@
     //////////
 
     function close() {
-      $('#InviteModal').off('hidden.bs.modal');
-      $state.go('Projects.Edit');
+      $state.go("Landing.Projects.Manage", {
+        'projectIndex': ProjectsService.getProjectIndex()
+      });
     }
 
     function addRoles() {
@@ -79,6 +80,7 @@
           ProjectsService.listInvites();
         });
       }
+      close();
     }
 
     function init() {

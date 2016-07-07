@@ -7,39 +7,27 @@
     .controller('ProjectsManageCtrl', ProjectsManageCtrl);
 
   /* @ngInject */
-  function ProjectsManageCtrl($q, $log, $state, $stateParams, IfStudioClient, AppService, ProjectsService) {
+  function ProjectsManageCtrl($q, $log, $state, $stateParams, IfStudioClient, ProjectsService) {
     var vm = this;
 
     vm.currProject = undefined;
     vm.appList = undefined;
     vm.projectIndex = undefined;
 
-    vm.launchApplicationModal = launchApplicationModal;
     vm.launchProjectModal = launchProjectModal;
-    vm.removeApp = removeApp;
     vm.populateUI = populateUI;
+    vm.close = close;
 
     //////////
 
-    function launchApplicationModal(appIndex) {
-      $state.go("Projects.Edit.Application", {
-        'appIndex': appIndex
-      });
+    function close() {
+      $state.go("Landing.Projects");
     }
 
-    function launchProjectModal() {
-      $state.go("Projects.Edit.Project", {
-        'projectI': vm.projectIndex
+    function launchProjectModal(projectIndex) {
+      $state.go("Landing.Projects.Manage.UpdateProject", {
+        'projectI': projectIndex
       });
-    }
-
-    function removeApp(appIndex) {
-      AppService.deleteApp(ProjectsService.getCurrProjectOrgId(), vm.appList[appIndex].client_id, function(appId) {
-        vm.appList.splice(appIndex, 1);
-      }, function() {
-        // Notification failure
-      });
-
     }
 
     function loadProject() {
@@ -51,13 +39,7 @@
     }
 
     function loadApps() {
-      return AppService.getAllApps(ProjectsService.getCurrProjectOrgId(), function(data) {
-        AppService.setModelAppList(data);
-        vm.appList = AppService.getModel().appList;
-      }, function(error) {
-        AppService.setModelAppList([]);
-        vm.appList = AppService.getModel().appList;
-      });
+      return ProjectsService.listApplications();
     }
 
     function loadUsers() {
@@ -78,6 +60,7 @@
 
       vm.myProjects = ProjectsService.getAllProjects();
       vm.projectIndex = $stateParams.projectIndex;
+      ProjectsService.setProjectIndex(vm.projectIndex);
       var orgId = vm.myProjects[vm.projectIndex].org_id;
       ProjectsService.setCurrProjectOrgId(orgId);
 
@@ -85,9 +68,6 @@
 
       vm.populateUI(vm.projectIndex);
 
-      // vm.appModel.modelReady.then(function() {
-      //   vm.appList = vm.appModel.appList;
-      // });
     }
 
     init();

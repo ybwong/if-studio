@@ -186,6 +186,18 @@
           controller: 'ProjectsCtrl',
           controllerAs: 'projects'
         })
+        .state("Landing.Projects.AddProject", {
+          params: {
+            projectI: null
+          },
+          views: {
+            "modal": {
+              templateUrl: '/site/projects/projectEdit.html',
+              controller: 'ProjectEditCtrl',
+              controllerAs: 'project'
+            }
+          }
+        })
         .state("Landing.Projects.Manage", {
           params: {
             projectIndex: null
@@ -198,15 +210,53 @@
             }
           }
         })
-        .state("Landing.Projects.EditProject", {
+        .state("Landing.Projects.Manage.UpdateProject", {
           params: {
             projectI: null
           },
           views: {
-            "modal": {
+            "modal2": {
               templateUrl: '/site/projects/projectEdit.html',
               controller: 'ProjectEditCtrl',
               controllerAs: 'project'
+            }
+          }
+        })
+        .state("Landing.Projects.Manage.EditApplication", {
+          params: {
+            appIndex: null
+          },
+          views: {
+            "modal2": {
+              templateUrl: '../site/application/appInputModal.html',
+              controller: 'AppInputModalCtrl',
+              controllerAs: 'appInputCtrl'
+            }
+          }
+        })
+        .state("Landing.Projects.Manage.EditUser", {
+          params: {
+            userI: null,
+            role: ''
+          },
+          views: {
+            "modal2": {
+              templateUrl: '../site/user/userModal.html',
+              controller: 'UserModalCtrl',
+              controllerAs: 'userModalCtrl'
+            }
+          }
+        })
+        .state("Landing.Projects.Manage.EditInvite", {
+          params: {
+            inviteI: null,
+            role: ''
+          },
+          views: {
+            "modal2": {
+              templateUrl: '../site/user/inviteModal.html',
+              controller: 'InviteModalCtrl',
+              controllerAs: 'inviteModalCtrl'
             }
           }
         });

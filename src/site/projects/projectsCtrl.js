@@ -44,7 +44,7 @@
         ProjectsService.setCurrProjectOrgId(orgId);
       }
 
-      $state.go("Landing.Projects.EditProject", {
+      $state.go("Landing.Projects.AddProject", {
         'projectI': projectI
       });
     }
