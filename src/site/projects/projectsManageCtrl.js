@@ -56,6 +56,7 @@
     }
 
     function init() {
+      vm.formClass = 'side-form-80';
       ProjectsService.clearModel();
 
       vm.myProjects = ProjectsService.getAllProjects();

@@ -1,15 +1,14 @@
 /* side form */
 
 @mixin sideForm($formWidth, $duration, $speed) {
-  .side-form {
+  & > .side-form {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    .content {
+    & > .content {
       position: absolute;
-      z-index: 100;
       top: 0;
       right: 0;
       width: $formWidth;
@@ -19,9 +18,10 @@
       padding: 20px;
       border-left: 1px solid #e0e0e0;
     }
-    .background {
+    & > .background {
+      position: absolute;
+      opacity: 0.8;      
       background: #000;
-      opacity: 0.8;
       width: 100%;
       height: 100%;
     }
@@ -36,13 +36,13 @@
   }
   /* start 'enter' transition */
   &.ng-enter {
-    .side-form {
-      .content {
+    & > .side-form {
+      & > .content {
         transition: right $duration;
         transition-timing-function: $speed;
         right: -1 * $formWidth;
       }
-      .background {
+      & > .background {
         transition: opacity $duration;
         transition-timing-function: $speed;
         opacity: 0;
@@ -50,26 +50,27 @@
     }
   }
   /* end 'enter' transition */
+  &.ng-leave,  
   &.ng-enter-active {
-    .side-form {
-      .content {
+    & > .side-form {
+      & > .content {
         right: 0;
       }
-      .background {
+      & > .background {
         opacity: 0.8;
       }
     }
   }
   &.ng-leave-active {
-    .side-form {
-      .content {
+    & > .side-form {
+      & > .content {
         transition: right $duration;
-        transition-timing-function: $speed; 
+        transition-timing-function: $speed;
         right: -100%;
       }
-      .background {
+      & > .background {
         transition: opacity $duration;
-        transition-timing-function: $speed; 
+        transition-timing-function: $speed;
         opacity: 0;
       }
     }
@@ -81,6 +82,5 @@
 }
 
 .side-form-100 {
-  @include sideForm(100%, 0.75s, ease-in-out);
+  @include sideForm(100%, 1s, ease-in-out);
 }
-
