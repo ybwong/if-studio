@@ -1,0 +1,20 @@
+<div ng-controller="UsersCtrl as userManager">
+  <h4>
+    <a role="button" data-toggle="collapse" data-parent="#projectAccordion" href="#projectUser" aria-expanded="true" aria-controls="projectUser"> Manage Users:</a>
+  </h4>
+  <md-list flex>
+    <md-list-item class="md-3-line" ng-repeat="user in userManager.projectModel.users">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{user.username}}</h3>
+        <p>{{user.first_name}} {{user.last_name}}</p>
+        <p>{{user.role}}</p>
+      </div>
+      <div class="md-secondary">
+        <md-icon md-font-set="material-icons" ng-click="userManager.launchModal($index)"> create
+        </md-icon>
+        <md-icon md-font-set="material-icons" ng-click="userManager.deleteUserRole($index)"> delete
+        </md-icon>
+      </div>
+      <md-divider ng-if="!$last"></md-divider>
+  </md-list>
+</div>

@@ -1,0 +1,20 @@
+<div ng-controller="InvitesCtrl as inviteManager">
+  <h4>
+    <a role="button" data-toggle="collapse" data-parent="#projectAccordion" href="#projectInvite" aria-expanded="true" aria-controls="projectInvite"> Manage Invitations:</a>
+  </h4>
+  <md-list flex>
+    <md-list-item class="md-3-line" ng-repeat="invite in inviteManager.model.invites">
+      <div class="md-list-item-text" layout="column">
+        <h3>{{invite.id_key}}</h3>
+        <p>{{invite.id_type}}</p>
+        <p>{{invite.role}}</p>
+      </div>
+      <div class="md-secondary">
+        <md-icon md-font-set="material-icons" ng-click="inviteManager.launchModal($index)"> create
+        </md-icon>
+        <md-icon md-font-set="material-icons" ng-click="inviteManager.deleteInviteRole($index)"> delete
+        </md-icon>
+      </div>
+      <md-divider ng-if="!$last"></md-divider>
+  </md-list>
+</div>

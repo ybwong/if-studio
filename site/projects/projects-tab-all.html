@@ -1,0 +1,24 @@
+<div ui-view>
+  <div align="left">
+    <h1>Manage your projects:
+      <md-icon md-font-set="material-icons" style="font-size:32px" ng-click="projects.launchModal(-1)"> add</md-icon>
+    </h1>
+    <md-list flex>
+      <md-list-item class="md-2-line" ng-repeat="project in projects.myProjects track by $index">
+        <div class="md-list-item-text" layout="column">
+          <h3>{{project.org_name}}</h3>
+          <p>{{project.org_info}}</p>
+        </div>
+        <div class="md-secondary">
+          <md-icon md-font-set="material-icons" ng-click="projects.setFormClass( 'side-form-100') " ui-sref="Landing.Projects.Manage({projectIndex: $index}) "> create
+          </md-icon>
+          <md-icon md-font-set="material-icons" ng-click="projects.removeProject($index) "> delete
+          </md-icon>
+        </div>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-list-item>
+    </md-list>
+    <p class="lead " ng-hide="projects.myProjects.length ">You do not have any projects currently</p>
+  </div>
+</div>
+<div ui-view="modal " ng-class="projects.formClass "></div>

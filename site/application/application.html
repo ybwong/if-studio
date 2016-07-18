@@ -1,0 +1,23 @@
+<div ng-controller="ApplicationCtrl as applicationManager">
+  <h4>
+    <a role="button" data-toggle="collapse" data-parent="#projectAccordion" href="#projectApp" aria-expanded="true" aria-controls="projectApp">Manage Applications:</a>
+  </h4>
+  <div id="projectApp" class="collapse in">
+    <md-list flex>
+      <md-list-item class="md-3-line" ng-repeat="app in applicationManager.model.appList">
+        <div class="md-list-item-text" layout="column">
+          <h3>{{app.app_name}}</h3>
+          <p>{{app.app_info}}</p>
+          <p>{{app.app_type}}</p>
+        </div>
+        <div class="md-secondary">
+          <md-icon md-font-set="material-icons" ng-click="applicationManager.launchApplicationModal($index)"> create
+          </md-icon>
+          <md-icon md-font-set="material-icons" ng-click="applicationManager.removeApp($index)"> delete
+          </md-icon>
+        </div>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-list-item>
+    </md-list>
+  </div>
+</div>
