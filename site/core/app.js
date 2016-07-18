@@ -95,15 +95,15 @@
           }
         })
         .state('Landing.Guest', {
-          templateUrl: '/site/home/home-tab-guest.html',
+          templateUrl: 'site/home/home-tab-guest.html',
           controller: 'SectionsCtrl',
           controllerAs: 'sections'
         })
         .state('Landing.User', {
-          templateUrl: '/site/home/home-tab-user.html'
+          templateUrl: 'site/home/home-tab-user.html'
         })
         .state("Landing.Projects", {
-          templateUrl: '/site/projects/projects-tab-all.html',
+          templateUrl: 'site/projects/projects-tab-all.html',
           controller: 'ProjectsCtrl',
           controllerAs: 'projects'
         })
@@ -113,7 +113,7 @@
           },
           views: {
             "modal": {
-              templateUrl: '/site/projects/projectEdit.html',
+              templateUrl: 'site/projects/projectEdit.html',
               controller: 'ProjectEditCtrl',
               controllerAs: 'project'
             }
@@ -125,7 +125,7 @@
           },
           views: {
             "modal": {
-              templateUrl: '/site/projects/projectManage.html',
+              templateUrl: 'site/projects/projectManage.html',
               controller: 'ProjectsManageCtrl',
               controllerAs: 'projectManage'
             }
@@ -137,7 +137,7 @@
           },
           views: {
             "modal2": {
-              templateUrl: '/site/projects/projectEdit.html',
+              templateUrl: 'site/projects/projectEdit.html',
               controller: 'ProjectEditCtrl',
               controllerAs: 'project'
             }
@@ -149,7 +149,7 @@
           },
           views: {
             "modal2": {
-              templateUrl: '../site/application/appInputModal.html',
+              templateUrl: 'site/application/appInputModal.html',
               controller: 'AppInputModalCtrl',
               controllerAs: 'appInputCtrl'
             }
@@ -162,7 +162,7 @@
           },
           views: {
             "modal2": {
-              templateUrl: '../site/user/userModal.html',
+              templateUrl: 'site/user/userModal.html',
               controller: 'UserModalCtrl',
               controllerAs: 'userModalCtrl'
             }
@@ -175,7 +175,7 @@
           },
           views: {
             "modal2": {
-              templateUrl: '../site/user/inviteModal.html',
+              templateUrl: 'site/user/inviteModal.html',
               controller: 'InviteModalCtrl',
               controllerAs: 'inviteModalCtrl'
             }
