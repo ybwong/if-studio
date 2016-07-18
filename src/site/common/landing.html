@@ -1,8 +1,8 @@
-<md-toolbar layout="row">
+<md-toolbar layout="row" class="if-toolbar">
+  <h1>If Portal</h1>
   <md-button class="menu" hide-gt-sm ng-click="landing.toggleSideMenu()" aria-label="Show User List">
     <md-icon md-svg-icon="menu"></md-icon>
   </md-button>
-  <h1>If Portal</h1>
 </md-toolbar>
 <div flex layout="row">
   <md-sidenav ng-click="landing.toggleSideMenu()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2">
