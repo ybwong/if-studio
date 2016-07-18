@@ -77,7 +77,7 @@
 
       $stateProvider
         .state("Landing", {
-          templateUrl: '/site/Common/landing.html',
+          templateUrl: 'site/Common/landing.html',
           controller: 'LandingCtrl',
           controllerAs: 'landing'
         })
