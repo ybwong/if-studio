@@ -1,3 +1,27 @@
 .if-toolbar {
   padding-left: 24px;
 }
+
+.if-page {
+  height: 400px;
+  overflow: scroll;
+}
+
+.if-breadcrumb {
+  background-color: #795548;
+  font-weight: 400;
+  font-size: 1.250em;
+  margin-top: 10px;
+}
+
+.if-toolbar {
+  z-index: 0;
+}
+
+.if_project_selected {
+  background-color: rgba(158, 158, 158, 0.2);
+}
+
+.if-project-unselected {
+  background-color: inherit;
+}

@@ -3,7 +3,7 @@
 
   // .module('devPortal', ["ui.router"])
   angular
-    .module('Core', ['ui.router', 'ngResource', 'ngPromiseExtras', 'ngMaterial', 'ngAnimate'])
+    .module('Core', ['ui.router', 'ngResource', 'ngPromiseExtras', 'ngMaterial', 'ngAnimate', 'ncy-angular-breadcrumb'])
     // .factory('HttpHeaderInterceptor', ['$window', function($window) {
     //   return {
     //     request: function(config) {
@@ -13,6 +13,12 @@
     //     }
     //   };
     // }])
+    .config(function($breadcrumbProvider) {
+      $breadcrumbProvider.setOptions({
+        prefixStateName: 'Landing',
+        template: 'bootstrap3'
+      });
+    })
     .config(['$httpProvider', function($httpProvider) {
       $httpProvider.interceptors.push('HttpHeaderInterceptor');
     }])
@@ -79,11 +85,17 @@
         .state("Landing", {
           templateUrl: 'site/common/landing.html',
           controller: 'LandingCtrl',
-          controllerAs: 'landing'
+          controllerAs: 'landing',
+          ncyBreadcrumb: {
+            label: 'If Portal'
+          }
         })
         .state("Landing.Login", {
           template: '',
-          controller: 'LoginCtrl'
+          controller: 'LoginCtrl',
+          ncyBreadcrumb: {
+            label: 'Login'
+          }
         })
         .state("Landing.Home", {
           controller: function($state, IdpClient) {
@@ -97,15 +109,24 @@
         .state('Landing.Guest', {
           templateUrl: 'site/home/home-tab-guest.html',
           controller: 'SectionsCtrl',
-          controllerAs: 'sections'
+          controllerAs: 'sections',
+          ncyBreadcrumb: {
+            label: 'Home'
+          }
         })
         .state('Landing.User', {
-          templateUrl: 'site/home/home-tab-user.html'
+          templateUrl: 'site/home/home-tab-user.html',
+          ncyBreadcrumb: {
+            label: 'Home'
+          }
         })
         .state("Landing.Projects", {
           templateUrl: 'site/projects/projects-tab-all.html',
           controller: 'ProjectsCtrl',
-          controllerAs: 'projects'
+          controllerAs: 'projects',
+          ncyBreadcrumb: {
+            label: 'Projects'
+          }
         })
         .state("Landing.Projects.AddProject", {
           params: {
@@ -115,8 +136,11 @@
             "modal": {
               templateUrl: 'site/projects/projectEdit.html',
               controller: 'ProjectEditCtrl',
-              controllerAs: 'project'
+              controllerAs: 'project',
             }
+          },
+          ncyBreadcrumb: {
+            label: 'Add Project'
           }
         })
         .state("Landing.Projects.Manage", {
@@ -129,6 +153,9 @@
               controller: 'ProjectsManageCtrl',
               controllerAs: 'projectManage'
             }
+          },
+          ncyBreadcrumb: {
+            label: '{{projectManage.currProject.org_name}}'
           }
         })
         .state("Landing.Projects.Manage.UpdateProject", {
@@ -141,6 +168,9 @@
               controller: 'ProjectEditCtrl',
               controllerAs: 'project'
             }
+          },
+          ncyBreadcrumb: {
+            label: 'Edit Project'
           }
         })
         .state("Landing.Projects.Manage.EditApplication", {
@@ -153,6 +183,9 @@
               controller: 'AppInputModalCtrl',
               controllerAs: 'appInputCtrl'
             }
+          },
+          ncyBreadcrumb: {
+            label: 'Edit Application'
           }
         })
         .state("Landing.Projects.Manage.EditUser", {
@@ -166,6 +199,9 @@
               controller: 'UserModalCtrl',
               controllerAs: 'userModalCtrl'
             }
+          },
+          ncyBreadcrumb: {
+            label: 'Edit User'
           }
         })
         .state("Landing.Projects.Manage.EditInvite", {
@@ -179,6 +215,9 @@
               controller: 'InviteModalCtrl',
               controllerAs: 'inviteModalCtrl'
             }
+          },
+          ncyBreadcrumb: {
+            label: 'Edit Invite'
           }
         });
 

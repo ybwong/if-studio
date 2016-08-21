@@ -12,13 +12,47 @@
 
     vm.myProjects = {};
     vm.formClass = '';
+    vm.isEditDisabled = true;
+    vm.isDeleteDisabled = true;
+    vm.isProjectSelected = [];
 
     vm.removeProject = removeProject;
+    vm.editProject = editProject;
     vm.loadAllProjects = loadAllProjects;
     vm.launchModal = launchModal;
     vm.setFormClass = setFormClass;
+    vm.toggleProject = toggleProject;
+    vm.selectedProjects = [];
+
+    //ui-sref="Landing.Projects.Manage({projectIndex: $index})"
+    //projects.ng-click="projects.removeProject()
 
     //////////
+    function editProject() {
+      vm.setFormClass('side-form-100');
+      $state.go('Landing.Projects.Manage', { projectIndex: vm.selectedProjects[0] })
+    }
+
+    function toggleProject(index) {
+      if (vm.isProjectSelected[index]) {
+        vm.isProjectSelected[index] = undefined;
+        _.pull(vm.selectedProjects, index);
+      } else {
+        vm.isProjectSelected[index] = true;
+        vm.selectedProjects.push(index);
+      }
+
+      if (vm.selectedProjects.length > 1) {
+        vm.isEditDisabled = true;
+        vm.isDeleteDisabled = false;
+      } else if (vm.selectedProjects.length === 1) {
+        vm.isEditDisabled = false;
+        vm.isDeleteDisabled = false;
+      } else {
+        vm.isEditDisabled = true;
+        vm.isDeleteDisabled = true;
+      }
+    }
 
     function removeProject(index) {
       $log.log("removing project", vm.myProjects[index].org_id);

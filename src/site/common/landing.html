@@ -1,9 +1,11 @@
 <md-toolbar layout="row" class="if-toolbar">
-  <h1>If Portal</h1>
   <md-button class="menu" hide-gt-sm ng-click="landing.toggleSideMenu()" aria-label="Show User List">
     <md-icon md-svg-icon="menu"></md-icon>
   </md-button>
+  <!-- <h1>If Portal</h1> -->
+  <div ncy-breadcrumb class="if-breadcrumb"></div>
 </md-toolbar>
+<!-- <div flex layout="row" style="height:400px; overflow:scroll"> -->
 <div flex layout="row">
   <md-sidenav ng-click="landing.toggleSideMenu()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2">
     <md-list>
@@ -15,7 +17,7 @@
       </md-list-item>
     </md-list>
   </md-sidenav>
-  <md-content flex id="content">
+  <md-content flex id="content" layout-padding>
     <div ui-view></div>
     <!-- <md-icon md-svg-icon="{{landing.selected.avatar}}" class="avatar"></md-icon>
     <h2>{{landing.selected.name}}</h2>
