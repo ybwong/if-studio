@@ -87,9 +87,9 @@
 }
 
 .side-form-80 {
-  @include sideForm(80%, 0.75s, ease-in-out);
+  @include sideForm(80%, 0.5s, ease-in-out);
 }
 
 .side-form-100 {
-  @include sideForm(100%, 0.75s, ease-in-out);
+  @include sideForm(100%, 0.5s, ease-in-out);
 }
